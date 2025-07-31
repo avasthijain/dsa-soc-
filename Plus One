@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    vector<int> increment(vector<int> arr ,int N) {        
+        arr[N-1] += 1; 
+        int carry = arr[N-1]/10; 
+        arr[N-1] %= 10;
+        for (int i=N-2; i>=0; i--) 
+        { 
+            if (carry == 1) 
+            { 
+               arr[i] += 1; 
+               carry = arr[i]/10; 
+               arr[i] %= 10; 
+            } 
+        } 
+        if (carry == 1) 
+            arr.insert(arr.begin(), 1); 
+        
+        return arr;
+    }
+};
