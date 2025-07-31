@@ -1,0 +1,74 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+bool check(int a[], int n, int k) 
+{ 
+
+    map<int, int> m; 
+ 
+    int extra = 0; 
+
+
+    for (int i = k; i < n; i++) 
+        m[a[i]]++; 
+
+    for (auto x : m) 
+        extra += x.second - 1; 
+
+    if (extra == 0) 
+        return true; 
+
+    for (int i = 1; i + k - 1 < n; i++) { 
+
+        if (m[a[i + k - 1]] > 1) 
+            extra--; 
+
+
+        m[a[i + k - 1]]--; 
+
+        m[a[i - 1]]++; 
+
+     
+        if (m[a[i - 1]] > 1) 
+            extra++; 
+
+        if (extra == 0) 
+            return true; 
+    } 
+
+    return false; 
+} 
+
+
+int minlength(int a[], int n) 
+{ 
+   
+    int lo = 0, hi = n + 1; 
+
+    int ans = 0; 
+
+
+    while (lo < hi) { 
+
+        int mid = (lo + hi) / 2; 
+
+        if (check(a, n, mid)) { 
+            ans = mid; 
+            hi = mid; 
+        } 
+        else
+            lo = mid + 1; 
+    } 
+
+    return ans; 
+} 
+
+
+int main() 
+{ 
+    int a[5] = { 1, 2, 1, 2, 3 }; 
+
+    int n = sizeof(a) / sizeof(int); 
+
+    cout << minlength(a, n); 
+}
