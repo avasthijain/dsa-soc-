@@ -1,0 +1,17 @@
+class Solution {
+  public:   
+    int maximumProfit(int prices[], int pricesSize) {   
+    int buyPrice = prices[0];
+    int maxProfit = 0;
+
+    for (int i = 1; i < pricesSize; i++) {      
+        maxProfit =
+            (prices[i] - buyPrice > maxProfit) ? prices[i] - buyPrice : maxProfit;
+       
+        buyPrice = (prices[i] < buyPrice) ? prices[i] : buyPrice;
+    }
+
+
+    return maxProfit;
+}
+};
