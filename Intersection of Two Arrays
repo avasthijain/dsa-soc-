@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    vector<int> intersection(vector<int> &arr1, vector<int> &arr2) {
+        int i = 0, j = 0;
+        bool flag = false;
+        std::vector<int> v;
+        int n = arr1.size();
+        int m = arr2.size();
+        while (i < n && j < m) {
+            // Updating the pointer i if we have identical
+            // elements at consecutive position in arr1.
+            if (i > 0 && arr1[i - 1] == arr1[i]) {
+                i++;
+                continue;
+            }
+            if (arr1[i] < arr2[j])
+                i++;
+            else if (arr2[j] < arr1[i])
+                j++;
+            else {
+                v.push_back(arr2[j]);
+                flag = true;
+                i++;
+                j++;
+            }
+        }
+        return v;
+    }
+};
