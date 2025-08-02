@@ -1,0 +1,39 @@
+class Solution {
+  public:
+
+    bool isSymmetric(Node* root) {
+        if (root == nullptr)
+            return true;
+
+        stack<Node*> s1, s2;
+s
+        s1.push(root->left);
+        s2.push(root->right);
+
+        while (!s1.empty() && !s2.empty()) {
+
+
+            Node* node1 = s1.top();
+            Node* node2 = s2.top();
+            s1.pop();
+            s2.pop();
+
+            if (node1 == nullptr && node2 == nullptr) {
+                continue;
+            }
+
+            if (node1 == nullptr || node2 == nullptr || node1->data != node2->data) {
+                return false;
+            }
+
+
+            s1.push(node1->left);
+            s2.push(node2->right);
+
+            s1.push(node1->right);
+            s2.push(node2->left);
+        }
+
+        return s1.empty() && s2.empty();
+    }
+};
