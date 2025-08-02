@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int getKthFromLast(Node* head, int k) {
+        Node* currNode = head;
+        Node* kthNode = head;
+        while (k != 0) {
+            if (currNode == NULL)
+                return -1;
+            currNode = currNode->next;
+            k--;
+        }
+        while (currNode != NULL) {
+            kthNode = kthNode->next;
+            currNode = currNode->next;
+        }
+        if (kthNode != NULL)
+            return kthNode->data;
+        else
+            return -1;
+    }
+};
