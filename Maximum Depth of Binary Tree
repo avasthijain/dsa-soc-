@@ -1,0 +1,23 @@
+class Solution{
+  public:
+    int maxDepth(Node *root) {
+        if (root == NULL) return 0;
+    
+        if (root->left == NULL and root->right == NULL) return 1;
+     
+    
+        int left, right;
+        if (root->left != NULL) left = maxDepth(root->left);
+        
+        else
+            left = INT_MIN;
+    
+        if (root->right != NULL) right = maxDepth(root->right);
+    
+        else
+            right = INT_MIN;
+    
+        return 1 + max(left, right);
+    }
+
+};
