@@ -1,0 +1,15 @@
+class Solution {
+  public:
+   
+    bool isIdentical(Node* a, Node* b) {
+     
+        if (a == NULL && b == NULL)
+            return true;
+
+        if (a != NULL && b != NULL) {
+            return (a->data == b->data && isIdentical(a->left, b->left) &&
+                    isIdentical(a->right, b->right));
+        }
+        return false;
+    }
+};
